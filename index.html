@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 工具大全</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            width: 60%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card {
+            background: #fff;
+            padding: 15px;
+            margin: 10px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h3 {
+            margin: 0;
+            color: #007BFF;
+        }
+        .card a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI 工具大全</h1>
+    <input type="text" id="search" placeholder="搜索工具..." onkeyup="filterTools()">
+    <div class="container" id="toolContainer">
+        <!-- 这里会动态填充工具卡片 -->
+    </div>
+
+    <script>
+        const tools = [
+            {name: "Deepseek", type: "推理模型", link: "https://www.deepseek.com/"},
+            {name: "通义千问", type: "推理模型", link: "https://tongyi.aliyun.com/"},
+            {name: "智谱清言", type: "大语言模型", link: "https://chatglm.cn/main/alltoolsdetail?lang=zh"},
+            {name: "Kimi", type: "大语言模型", link: "https://kimi.moonshot.cn/"},
+            {name: "豆包", type: "大语言模型", link: "https://www.doubao.com/chat/"},
+            {name: "文心一言", type: "大语言模型", link: "https://yiyan.baidu.com/"},
+            {name: "讯飞星火", type: "大语言模型", link: "https://xinghuo.xfyun.cn/"},
+            {name: "新华妙笔", type: "AI写作", link: "https://miaobi.xinhuaskl.com/"},
+            {name: "办公小浣熊", type: "数据分析", link: "https://xiaohuanxiong.com/office"},
+            {name: "酷表", type: "数据分析", link: "https://www.chatexcel.com/"},
+            {name: "秘塔AI搜索", type: "AI搜索", link: "https://metaso.cn/"},
+            {name: "天工AI", type: "AI搜索", link: "https://www.tiangong.cn/"},
+            {name: "博思白板", type: "综合办公", link: "https://boardmix.cn/"},
+            {name: "iSlide", type: "PPT生成", link: "https://www.islide.cc/"},
+            {name: "Kimi+AIPPT", type: "PPT生成", link: "https://kimi.moonshot.cn/kimiplus/conpg18t7lagbbsfqksg"},
+            {name: "美图设计室", type: "海报制作", link: "https://www.designkit.com/"},
+            {name: "海绵音乐", type: "音乐创作", link: "https://www.haimian.com/"},
+            {name: "WinkStudio", type: "视频处理", link: "https://wink.meitu.com/"},
+            {name: "可灵AI", type: "视频生成", link: "https://klingai.kuaishou.com/"},
+            {name: "度加", type: "视频剪辑", link: "https://aigc.baidu.com/home"},
+            {name: "剪映", type: "视频剪辑", link: "https://www.capcut.cn/"},
+            {name: "ClipChamp", type: "语音生成(PC软件)", link: "https://www.microsoft.com/zh-cn/microsoft-365/clipchamp"},
+            {name: "TTS-VUE", type: "语音生成(PC软件)", link: "https://loker-page.lgwawork.com/guide/install.html"},
+            {name: "其他支持应用市场的软件", type: "美图秀秀、秒鸭相机、通义、歌歌AI写歌、微信语音转文字"}
+        ];
+
+        function displayTools() {
+            const container = document.getElementById("toolContainer");
+            container.innerHTML = "";
+            tools.forEach(tool => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `<h3>${tool.name}</h3><p>${tool.type}</p>` +
+                                (tool.link ? `<a href="${tool.link}" target="_blank">访问工具</a>` : "");
+                container.appendChild(card);
+            });
+        }
+        
+        function filterTools() {
+            const searchValue = document.getElementById("search").value.toLowerCase();
+            const filteredTools = tools.filter(tool => tool.name.toLowerCase().includes(searchValue) || tool.type.toLowerCase().includes(searchValue));
+            
+            const container = document.getElementById("toolContainer");
+            container.innerHTML = "";
+            filteredTools.forEach(tool => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `<h3>${tool.name}</h3><p>${tool.type}</p>` +
+                                (tool.link ? `<a href="${tool.link}" target="_blank">访问工具</a>` : "");
+                container.appendChild(card);
+            });
+        }
+        
+        displayTools();
+    </script>
+</body>
+</html>
